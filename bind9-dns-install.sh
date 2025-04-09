@@ -61,6 +61,7 @@ sudo tee /etc/bind/named.conf.local > /dev/null <<EOF
 zone "215.lab" {
     type master;
     file "/etc/bind/zones/db.215.lab";
+    allow-transfer { any; };
 };
 EOF
 
