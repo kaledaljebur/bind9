@@ -66,7 +66,7 @@ EOF
 
 #Zone file for 215.lab domain
 sudo tee /etc/bind/zones/db.215.lab > /dev/null <<EOF
-\$TTL 604800
+$TTL 604800
 @ IN SOA 215.lab. admin.lab. (
 1 ; Serial
 604800 ; Refresh
@@ -74,8 +74,8 @@ sudo tee /etc/bind/zones/db.215.lab > /dev/null <<EOF
 2419200 ; Expire
 604800 ) ; Negative Cache TTL
 
-@ IN NS 215.lab.
-215 IN A 192.168.8.50
+@ IN NS ns.215.lab.
+ns IN A 192.168.8.50
 linux IN A 192.168.8.30
 win IN A 192.168.8.40
 metasploitable IN A 192.168.8.20
