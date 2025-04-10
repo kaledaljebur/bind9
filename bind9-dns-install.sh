@@ -101,5 +101,12 @@ EOF
 sudo systemctl start bind9
 sudo systemctl enable named
 
+sleep 2
+echo "***********************************"
+echo "Restart bind9 to make sure it is working fine..."
+echo "***********************************"
+
+sudo systemctl restart bind9
+
 #Test bind9 status
 sudo systemctl status bind9 --no-pager
