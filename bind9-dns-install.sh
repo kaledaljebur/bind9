@@ -61,7 +61,7 @@ sudo tee /etc/bind/named.conf.local > /dev/null <<EOF
 /* Comments block start
 Commented by Kaled Aljebur.
 
-To disbale zone transfer:
+To disable zone transfer:
 Change "allow-transfer { any; }" into "allow-transfer { none; }",
 or you can add trusted IP for allowed zone transfer request
 using "allow-transfer { 192.168.8.10; }".
@@ -73,24 +73,24 @@ Use "sudo systemctl restart bind9" to apply any changes.
 
 Comments block end*/
 
-zone "215.lab" {
+zone "vu23215.lab" {
 type master;
-file "/etc/bind/zones/db.215.lab";
+file "/etc/bind/zones/db.vu23215.lab";
 allow-transfer { any; };
 };
 EOF
 
-#Zone file for 215.lab domain, \ will escape $
-sudo tee /etc/bind/zones/db.215.lab > /dev/null <<EOF
+#Zone file for vu23215.lab domain, \ will escape $
+sudo tee /etc/bind/zones/db.vu23215.lab > /dev/null <<EOF
 \$TTL 604800
-@ IN SOA 215.lab. admin.lab. (
+@ IN SOA ns.vu23215.lab. admin.lab. (
 1 ; Serial
 604800 ; Refresh
 86400 ; Retry
 2419200 ; Expire
 604800 ) ; Negative Cache TTL
 
-@ IN NS ns.215.lab.
+@ IN NS ns.vu23215.lab.
 ns IN A 192.168.8.50
 linux IN A 192.168.8.30
 win IN A 192.168.8.40
