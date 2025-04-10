@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "This script is created by Kaled Aljebur to enable Netplan"
-echo "network managment in LinuxMint for teaching in my classes."
+echo "This script is created by Kaled Aljebur to Install Bind9 DNS server."
+echo "This also include enabling Netplan and brief IP and DNS setup."
 #Disable NetworkManager
 echo "Disable NetworkManager..."
 sudo systemctl stop NetworkManager
@@ -65,9 +65,9 @@ zone "215.lab" {
 };
 EOF
 
-#Zone file for 215.lab domain
+#Zone file for 215.lab domain, \ will escape $
 sudo tee /etc/bind/zones/db.215.lab > /dev/null <<EOF
-$TTL 604800
+\$TTL 604800
 @ IN SOA 215.lab. admin.lab. (
 1 ; Serial
 604800 ; Refresh
