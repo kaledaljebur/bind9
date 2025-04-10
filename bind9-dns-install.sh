@@ -58,10 +58,25 @@ sudo apt install -y netplan.io bind9
 sudo mkdir -p /etc/bind/zones
 
 sudo tee /etc/bind/named.conf.local > /dev/null <<EOF
+/* Comments block start
+Commented by Kaled Aljebur.
+
+To disbale zone transfer:
+Change "allow-transfer { any; }" into "allow-transfer { none; }",
+or you can add trusted IP for allowed zone transfer request
+using "allow-transfer { 192.168.8.10; }".
+
+Notice: removing or hashing "allow-transfer..." will make it act
+like "allow-transfer{any;}" because this is the default.
+
+Use "sudo systemctl restart bind9" to apply any changes.
+
+Comments block end*/
+
 zone "215.lab" {
-    type master;
-    file "/etc/bind/zones/db.215.lab";
-    allow-transfer { any; };
+type master;
+file "/etc/bind/zones/db.215.lab";
+allow-transfer { any; };
 };
 EOF
 
