@@ -30,8 +30,8 @@ network:
       gateway4: 192.168.8.2
       nameservers:
         addresses:
-          - 8.8.8.8
-          - 1.1.1.1
+          - 192.168.8.2
+          # - 1.1.1.1
 EOF
 
 #Apply the Netplan profile
