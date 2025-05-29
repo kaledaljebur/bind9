@@ -18,7 +18,7 @@ sudo mv /etc/netplan/01-network-manager-all.yml /etc/netplan/01-network-manager-
 #Edit the Netplan YAML profile
 echo "Create Netplan YAML progfile..."
 sudo tee /etc/netplan/01-network-manager-all.yaml > /dev/null <<EOF
-# Create by Kaled Aljebur as a sample and tested in VMware enviroment.
+# Create by Kaled Aljebur as a sample and tested in VMware environment.
 network:
   version: 2
   renderer: networkd
@@ -95,6 +95,24 @@ ns IN A 192.168.8.50
 linux IN A 192.168.8.30
 win IN A 192.168.8.40
 metasploitable IN A 192.168.8.20
+EOF
+
+#This to make sure the Mint machine will use the NAT IP as external DNS server
+echo "Make sure the NAT IP is used as external DNS server..."
+sudo tee /etc/bind/named.conf.options > /dev/null <<EOF
+# Create by Kaled Aljebur as a sample and tested in VMware environment.
+options {
+    directory "/var/cache/bind";
+    recursion yes;
+    allow-recursion { any; };
+    listen-on { any; };
+    listen-on-v6 { any; };
+    forwarders {
+        192.168.8.2;
+    };
+    dnssec-validation no;
+    auth-nxdomain no;
+};
 EOF
 
 #Start and and auto start bind9 after reboot
